@@ -7,17 +7,16 @@ use App\Document\User;
 
 trait CreateTrait
 {
+    #[ODM\ReferenceOne(targetDocument: User::class)]
+    private ?User $createdBy = null;
 
-    #[ODM\Field(type: "date")]
-    private ?\User $createdBy = null;
-
-    public function setCreatedBy(\User $createdBy): self
+    public function setCreatedBy(User $createdBy): self
     {
         $this->createdBy = $createdBy;
         return $this;
     }
 
-    public function getCreatedBy(): ?\User
+    public function getCreatedBy(): ? User
     {
         return $this->createdBy;
     }
