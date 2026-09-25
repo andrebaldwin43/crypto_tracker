@@ -10,8 +10,8 @@ trait UpdateTrait
     #[ODM\Field(type: "date")]
     private ?\DateTimeInterface $updatedAt = null;
 
-    #[ODM\Field(type: "user")]
-    private ?\User $updatedBy = null;
+    #[ODM\ReferenceOne(targetDocument:User::class)]
+    private ?User $updatedBy = null;
 
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
@@ -24,13 +24,13 @@ trait UpdateTrait
         return $this->updatedAt;
     }
 
-    public function setUpdatedBy(\User $updatedBy): self
+    public function setUpdatedBy(User $updatedBy): self
     {
         $this->updatedBy = $updatedBy;
         return $this;
     }
 
-    public function getUpdatedBy(): ?\User
+    public function getUpdatedBy(): ?User
     {
         return $this->updatedBy;
     }
