@@ -21,24 +21,6 @@ class SecurityController extends AbstractController
         UserPasswordHasherInterface $passwordHasher
     ): Response
     {
-
-        $user = new User();
-        $user->setEmail('test1@gmail.com'); 
-        $user->setRoles(['ROLE_USER']);
-
-        $plaintextPassword = 'test1';
-
-        $hashedPassword = $passwordHasher->hashPassword(
-            $user,
-            $plaintextPassword
-        );
-        $user->setPassword($hashedPassword);
-
-        $documentManager->persist($user);
-        $documentManager->flush();
-        
-
-        
         // If user is already logged in, redirect them
         if ($this->getUser()) {
             return $this->redirectToRoute('app_dashboard');
