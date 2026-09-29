@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Document\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +35,33 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
+        ]);
+    }
+
+    #[Route(path: '/register', name: 'app_register')]
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, DocumentManager $documentManager): Response
+    {
+        $registrationForm = $this->createForm(UserType::class);
+        $registrationForm->handleRequest($request);
+
+        if ($registrationForm->isSubmitted() && $registrationForm->isValid()) {
+            $data = $registrationForm->getData();
+            $user = new User();
+
+            // Hash the password
+            $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
+            $user->setEmail($data['email']);
+            $user->setPassword($hashedPassword);
+
+            // Save the user to the database
+            $documentManager->persist($user);
+            $documentManager->flush();
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('security/register.html.twig', [
+            'registrationForm' => $registrationForm,
         ]);
     }
 
