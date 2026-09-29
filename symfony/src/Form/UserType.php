@@ -18,13 +18,24 @@ class UserType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Email',
+                "attr" => [
+                    'placeholder' => 'Enter your email',
+                    'class' => 'bg-amber-50 border border-gray-300 p-2 rounded mb-5',
+                ],
             ])
-            ->add('password', PasswordType::class, [
-                'hash_property_path' => 'password',
-                'mapped' => false,
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'label' => 'Password',
+                'required' => true,
+                'invalid_message' => 'The password fields must match.',
+                'first_options'  => ['label' => 'Password'],
+                'second_options' => ['label' => 'Confirm Password']
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Sign In',
+                "attr" => [
+                    'class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-10 rounded cursor-pointer',
+                ],
             ]);
     }
 
