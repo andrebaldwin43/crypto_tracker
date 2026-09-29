@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="text-center text-6xl text-blue-300 font-bold mt-40 text-shadow-sm text-shadow-black">Crypto Tracker</div>
+<div class="container bg-slate-300 mx-auto max-w-md p-8 rounded-lg shadow-md mt-10 outline-2 outline-blue-500">
+  {{ form_start(registrationForm, {'attr': {'class': 'flex flex-col'}}) }}
+  {{ form_errors(registrationForm) }}  
+    <h1 class="text-center mb-4 text-2xl font-bold">Register</h1>
+    
+        {{ form_label(registrationForm.email) }}
+        {{ form_widget(registrationForm.email) }}
+        {{ form_errors(registrationForm.email) }}
+
+        {{ form_label(registrationForm.password) }}
+        {{ form_widget(registrationForm.password.first, {'attr' : {'class': 'bg-amber-50 border border-gray-300 p-2 rounded mb-1'}}) }}
+
+        {{ form_label(registrationForm.password.second) }}
+        {{ form_widget(registrationForm.password.second, {'attr' : {'class': 'bg-amber-50 border border-gray-300 p-2 rounded'}}) }}
+        
+        <span class="text-red-500">{{ form_errors(registrationForm.password.first) }}</span>
+        <span class="text-red-500">{{ form_errors(registrationForm.password.second) }}</span>
+
+        {{ form_widget(registrationForm.submit, {'label': 'Register'}) }}
+
+        <div class="text-center mt-4">Already have an account? <a href="{{ path('app_login') }}" class="text-blue-500 hover:text-blue-700">Login</a></div>
+    
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}
