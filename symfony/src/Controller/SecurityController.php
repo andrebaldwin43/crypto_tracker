@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class SecurityController extends AbstractController
 {
@@ -41,19 +42,16 @@ class SecurityController extends AbstractController
     #[Route(path: '/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, DocumentManager $documentManager): Response
     {
-        $registrationForm = $this->createForm(UserType::class);
+        $user = new User();
+        $registrationForm = $this->createForm(UserType::class, $user);
         $registrationForm->handleRequest($request);
 
         if ($registrationForm->isSubmitted() && $registrationForm->isValid()) {
-            $data = $registrationForm->getData();
-            $user = new User();
-
-            // Hash the password
-            $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
-            $user->setEmail($data['email']);
+            $plainPassword = $registrationForm->get('password')->getData();
+            
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
             $user->setPassword($hashedPassword);
 
-            // Save the user to the database
             $documentManager->persist($user);
             $documentManager->flush();
 
