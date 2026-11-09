@@ -1,0 +1,20 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (data storage - regenerated)
+docker/mongodb_data/
+
+# Environment overrides (project-wide)
+.env.local
+.env.*.local
+
+# Logs
+*.log
