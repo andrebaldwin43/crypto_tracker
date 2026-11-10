@@ -11,6 +11,8 @@ class DashboardController extends AbstractController
     #[Route('/dashboard', name: 'app_dashboard')]
     public function index(): Response
     {
-        return new Response('<html><body>Welcome to your secure MongoDB-backed dashboard, ' . $this->getUser()->getUserIdentifier() . '!</body></html>');
+        return $this->render('dashboard.html.twig', [
+            'user' => $this->getUser(),
+        ]);
     }
 }
