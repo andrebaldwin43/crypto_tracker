@@ -1,0 +1,24 @@
+{% if app.current_route != 'app_login' and app.current_route != 'app_register' %}
+    <nav class="bg-white p-5 text-left text-black [&_a]:px-1 [&_a]:hover:text-blue-500 flex justify-between items-center">
+        <div class="text-blue-500 font-bold text-2xl">Crypto Tracker</div>
+        <div>
+            {% if app.current_route != 'app_dashboard' %}
+                <a href="{{ path('app_dashboard') }}" class="{{ app.current_route == 'app_dashboard' ? 'active' : '' }}">
+                    Home
+                </a>
+            {% endif %}
+
+            <a href="{{ path('app_dashboard') }}" class="{{ app.current_route == 'app_dashboard' ? 'active' : '' }}">
+                Add Crypto
+            </a>
+
+            <a href="{{ path('app_dashboard') }}" class="{{ app.current_route == 'app_dashboard' ? 'active' : '' }}">
+                Account
+            </a>
+
+            <a href="{{ path('app_logout') }}" class="{{ app.current_route == 'app_logout' ? 'active' : '' }} text-red-600 hover:text-red-400">
+                Logout
+            </a>
+        </div>
+    </nav>
+{% endif %}
