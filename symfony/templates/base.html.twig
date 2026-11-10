@@ -20,6 +20,10 @@
         {% endif %}
     </head>
     <body class="min-h-screen w-full bg-no-repeat bg-cover bg-center" style="background-image:url('{{ asset('img/bitcoin_bg.jpg') }}')">
-        {% block body %}{% endblock %}
+        {{ include('_partials/_navbar.html.twig') }}
+        
+        <main>
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>
