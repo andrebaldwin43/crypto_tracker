@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <h1 class="text-2xl text-blue-500 text-center font-bold mb-4 mt-4">Add Crypto</h1>
+        <div class="bg-gray-300 w-full h-full p-4 border rounded-xl items-center m-auto">
+            {{ form_row(form.crypto) }}
+            {{ form_row(form.quantity) }}
+            {{ form_row(form.price) }}
+            {{ form_row(form.purchaseDate) }}
+            {{ form_row(form.submit) }}
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
