@@ -7,6 +7,66 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.crypto:
+        Bitcoin:
+            name: 'Bitcoin'
+            crypto: 'BTC'
+        Cardano:
+            name: 'Cardano'
+            crypto: 'ADA'
+        Ethereum:
+            name: 'Ethereum'
+            crypto: 'ETH'
+        Solana:
+            name: 'Solana'
+            crypto: 'SOL'
+        Dogecoin:
+            name: 'Dogecoin'
+            crypto: 'DOGE'
+        Litecoin:
+            name: 'Litecoin'
+            crypto: 'LTC'
+        Polkadot:
+            name: 'Polkadot'
+            crypto: 'DOT'
+        Avalanche:
+            name: 'Avalanche'
+            crypto: 'AVAX'
+        ShibaInu:
+            name: 'Shiba Inu'
+            crypto: 'SHIB'
+        Tether:
+            name: 'Tether'
+            crypto: 'USDT'
+        USD Coin:
+            name: 'USD Coin'
+            crypto: 'USDC'
+        BinanceCoin:
+            name: 'Binance Coin'
+            crypto: 'BNB'
+        Ripple:
+            name: 'Ripple'
+            crypto: 'XRP'
+        Polygon:
+            name: 'Polygon'
+            crypto: 'MATIC'
+        Fantom:
+            name: 'Fantom'
+            crypto: 'FTM'
+        Chainlink:
+            name: 'Chainlink'
+            crypto: 'LINK'
+        Uniswap:
+            name: 'Uniswap'
+            crypto: 'UNI'
+        Aave:
+            name: 'Aave'
+            crypto: 'AAVE'
+        Tron:
+            name: 'Tron'
+            crypto: 'TRX'
+
+
 
 services:
     # default configuration for services in *this* file
