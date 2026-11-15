@@ -10,6 +10,7 @@ use DateTimeInterface;
 class Crypto extends AbstractDocument
 {
     use Trait\UpdateTrait;
+    use Trait\UserTrait;
 
     #[ODM\Field(type: "string")]
     private ?string $name = null;
@@ -24,17 +25,17 @@ class Crypto extends AbstractDocument
     private ?DateTimeInterface $purchaseDate = null;
 
     #[ODM\Field(type: "string")]
-    private ?string $crypto = null;
+    private ?string $cryptoCurrency = null;
 
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setCoin(string $name, string $crypto): self
+    public function setCoin(string $name, string $cryptoCurrency): self
     {
         $this->name = $name;
-        $this->crypto = $crypto;
+        $this->cryptoCurrency = $cryptoCurrency;
         return $this;
     }
 
@@ -73,6 +74,6 @@ class Crypto extends AbstractDocument
 
     public function getCrypto(): ?string
     {
-        return $this->crypto;
+        return $this->cryptoCurrency;
     }
 }
