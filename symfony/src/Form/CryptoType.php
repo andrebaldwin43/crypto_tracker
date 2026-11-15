@@ -12,12 +12,18 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use App\Document\User;
 
 class CryptoType extends AbstractType
 {
     public function __construct(
         #[Autowire('%app.crypto%')] 
-        private array $cryptoChoices
+        private array $cryptoChoices,
+        private Security $security,
     ) {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -48,6 +54,17 @@ class CryptoType extends AbstractType
                 'constraints' => [new NotBlank()],
             ])
             ->add('submit', SubmitType::class);
+
+            $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+            $crypto = $event->getData();
+            $user   = $this->security->getUser();
+
+            if (!$crypto instanceof Crypto || !$user instanceof User) {
+                throw new AccessDeniedException('A user account is required.');
+            }
+
+            $crypto->setUser($user);
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

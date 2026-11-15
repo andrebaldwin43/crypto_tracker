@@ -10,61 +10,61 @@ parameters:
     app.crypto:
         Bitcoin:
             name: 'Bitcoin'
-            crypto: 'BTC'
+            cryptoCurrency: 'BTC'
         Cardano:
             name: 'Cardano'
-            crypto: 'ADA'
+            cryptoCurrency: 'ADA'
         Ethereum:
             name: 'Ethereum'
-            crypto: 'ETH'
+            cryptoCurrency: 'ETH'
         Solana:
             name: 'Solana'
-            crypto: 'SOL'
+            cryptoCurrency: 'SOL'
         Dogecoin:
             name: 'Dogecoin'
-            crypto: 'DOGE'
+            cryptoCurrency: 'DOGE'
         Litecoin:
             name: 'Litecoin'
-            crypto: 'LTC'
+            cryptoCurrency: 'LTC'
         Polkadot:
             name: 'Polkadot'
-            crypto: 'DOT'
+            cryptoCurrency: 'DOT'
         Avalanche:
             name: 'Avalanche'
-            crypto: 'AVAX'
+            cryptoCurrency: 'AVAX'
         ShibaInu:
             name: 'Shiba Inu'
-            crypto: 'SHIB'
+            cryptoCurrency: 'SHIB'
         Tether:
             name: 'Tether'
-            crypto: 'USDT'
+            cryptoCurrency: 'USDT'
         USD Coin:
             name: 'USD Coin'
-            crypto: 'USDC'
+            cryptoCurrency: 'USDC'
         BinanceCoin:
             name: 'Binance Coin'
-            crypto: 'BNB'
+            cryptoCurrency: 'BNB'
         Ripple:
             name: 'Ripple'
-            crypto: 'XRP'
+            cryptoCurrency: 'XRP'
         Polygon:
             name: 'Polygon'
-            crypto: 'MATIC'
+            cryptoCurrency: 'MATIC'
         Fantom:
             name: 'Fantom'
-            crypto: 'FTM'
+            cryptoCurrency: 'FTM'
         Chainlink:
             name: 'Chainlink'
-            crypto: 'LINK'
+            cryptoCurrency: 'LINK'
         Uniswap:
             name: 'Uniswap'
-            crypto: 'UNI'
+            cryptoCurrency: 'UNI'
         Aave:
             name: 'Aave'
-            crypto: 'AAVE'
+            cryptoCurrency: 'AAVE'
         Tron:
             name: 'Tron'
-            crypto: 'TRX'
+            cryptoCurrency: 'TRX'
 
 
 
