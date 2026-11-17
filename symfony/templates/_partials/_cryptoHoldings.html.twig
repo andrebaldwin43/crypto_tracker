@@ -27,10 +27,16 @@
                     </div>
                 </div>
             </td>
-            <td class="text-right">{{ crypto.price|number_format(2) }}</td>
+            <td class="text-right">
+                {% if crypto.liveData and crypto.liveData.quote[0] %}
+                    ${{ crypto.liveData.quote[0].price|number_format(2) }}
+                {% else %}
+                    <span class="text-red-500 font-semibold">N/A</span>
+                {% endif %}
+            </td>
             <td class="text-right">{{ crypto.quantity }}</td>
-            <td class="text-right">{{ crypto.value|number_format(2) }}</td>
-            <td class="text-right">{{ crypto.costBasis|number_format(2) }}</td>
+            <td class="text-right">${{ crypto.value|number_format(2) }}</td>
+            <td class="text-right">${{ crypto.costBasis|number_format(2) }}</td>
         </tr>
     {% endfor %}
     </tbody>
