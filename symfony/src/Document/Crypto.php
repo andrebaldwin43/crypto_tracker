@@ -72,7 +72,7 @@ class Crypto extends AbstractDocument
         return $this;
     }
 
-    public function getCrypto(): ?string
+    public function getCryptoCurrency(): ?string
     {
         return $this->cryptoCurrency;
     }
