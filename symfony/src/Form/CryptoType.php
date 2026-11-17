@@ -46,7 +46,7 @@ class CryptoType extends AbstractType
                 'constraints' => [new NotBlank()],
             ])
             ->add('price', NumberType::class, [
-                'label' => 'Price',
+                'label' => 'Cost',
                 'constraints' => [new NotBlank()],
             ])
             ->add('purchaseDate', DateType::class, [
@@ -56,14 +56,14 @@ class CryptoType extends AbstractType
             ->add('submit', SubmitType::class);
 
             $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
-            $crypto = $event->getData();
-            $user   = $this->security->getUser();
+                $crypto = $event->getData();
+                $user   = $this->security->getUser();
 
-            if (!$crypto instanceof Crypto || !$user instanceof User) {
-                throw new AccessDeniedException('A user account is required.');
-            }
+                if (!$crypto instanceof Crypto || !$user instanceof User) {
+                    throw new AccessDeniedException('A user account is required.');
+                }
 
-            $crypto->setUser($user);
+                $crypto->setUser($user);
         });
     }
 
