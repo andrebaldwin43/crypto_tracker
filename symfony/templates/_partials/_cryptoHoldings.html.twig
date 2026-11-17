@@ -1,0 +1,38 @@
+
+{% block body %}
+<table class="w-full table-fixed p-4 border-none border-separate border-spacing-y-2.5">
+    <thead>
+        <tr>
+            <th class="text-left p-2">Name</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Quantity</th>
+            <th class="text-right">Value</th>
+            <th class="text-right">Avg. Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for name, crypto in cryptoData %}
+        <tr>
+            <td class="text-left">
+                <div class="flex items-center gap-3">
+                    <img
+                        src="https://assets.coincap.io/assets/icons/{{ crypto.cryptoCurrency|lower }}@2x.png"
+                        alt="{{ name }} logo"
+                        class="h-8 w-8 shrink-0"
+                        loading="lazy"
+                    >
+                    <div>
+                        <div class="font-medium">{{ name }}</div>
+                        <div class="text-sm text-gray-500">{{ crypto.cryptoCurrency }}</div>
+                    </div>
+                </div>
+            </td>
+            <td class="text-right">{{ crypto.price|number_format(2) }}</td>
+            <td class="text-right">{{ crypto.quantity }}</td>
+            <td class="text-right">{{ crypto.value|number_format(2) }}</td>
+            <td class="text-right">{{ crypto.costBasis|number_format(2) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
