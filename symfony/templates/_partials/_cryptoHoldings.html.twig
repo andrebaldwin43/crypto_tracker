@@ -5,9 +5,9 @@
         <tr>
             <th class="text-left p-2">Name</th>
             <th class="text-right">Price</th>
-            <th class="text-right">Quantity</th>
+            <th class="text-right">Balance</th>
             <th class="text-right">Value</th>
-            <th class="text-right">Avg. Price</th>
+            <th class="text-right">Unrealized P/L</th>
         </tr>
     </thead>
     <tbody>
@@ -34,9 +34,11 @@
                     <span class="text-red-500 font-semibold">N/A</span>
                 {% endif %}
             </td>
-            <td class="text-right">{{ crypto.quantity }}</td>
+            <td class="text-right">{{ crypto.quantity }}<span class="text-sm">{{' ' ~ crypto.cryptoCurrency }}</span></td>
             <td class="text-right">${{ crypto.value|number_format(2) }}</td>
-            <td class="text-right">${{ crypto.costBasis|number_format(2) }}</td>
+            <td class="{{ (crypto.value - crypto.price) >= 0 ? 'text-green-500' : 'text-red-600' }} text-right">
+                ${{ (crypto.value - crypto.price)|number_format(2) }}
+            </td>
         </tr>
     {% endfor %}
     </tbody>
