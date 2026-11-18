@@ -30,7 +30,7 @@ class CryptoDataParserService
                 $liveDataForSymbol = $this->getLiveDataForSymbol($symbol, $liveDataBySymbol);
 
                 $parsedData[$name] = [
-                    'price'          => $crypto->getPrice() ?? 0,
+                    'price'          => 0,
                     'cryptoCurrency' => $symbol ?? null,
                     'quantity'       => 0,
                     'costBasis'      => 0,
@@ -42,7 +42,7 @@ class CryptoDataParserService
             $parsedData[$name]['price']    += $crypto->getPrice() ?? 0;
             $parsedData[$name]['quantity'] += $crypto->getQuantity() ?? 0;
             $parsedData[$name]['value']     = $parsedData[$name]['liveData'] ? $parsedData[$name]['liveData']['quote'][0]['price'] * $parsedData[$name]['quantity'] : 0;
-            $parsedData[$name]['costBasis'] = $parsedData[$name]['price'] * $parsedData[$name]['quantity'];
+            $parsedData[$name]['costBasis'] = $parsedData[$name]['price'] / $parsedData[$name]['quantity'];
         }
 
         return $parsedData;
