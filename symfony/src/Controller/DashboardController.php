@@ -52,10 +52,15 @@ class DashboardController extends AbstractController
             $logger->error('Unexpected error in dashboard: ' . $e->getMessage());
         }
 
+        $chartLabels = array_values(array_map(fn($crypto) => $crypto['cryptoCurrency'], $parsedData));
+        $chartValues = array_values(array_map(fn($crypto) => $crypto['value'], $parsedData));
+
         return $this->render('dashboard.html.twig', [
             'user' => $user,
             'cryptoData' => $parsedData,
             'error' => $error,
+            'chart_labels' => $chartLabels,
+            'chart_values' => $chartValues,
         ]);
     }
 }
