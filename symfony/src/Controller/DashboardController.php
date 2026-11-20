@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 class DashboardController extends AbstractController
 {
     #[Route('/dashboard', name: 'app_dashboard')]
+    #[IsGranted('ROLE_USER')]
     public function index(
         CryptoRepository $cryptoRepository,
         CryptoDataParserService $cryptoDataParserService,
