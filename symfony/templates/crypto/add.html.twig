@@ -1,15 +1,54 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'form/tailwind_custom_theme.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-    <h1 class="text-2xl text-blue-500 text-center font-bold mb-4 mt-4">Add Crypto</h1>
-        <div class="bg-gray-300 w-full h-full p-4 border rounded-xl items-center m-auto">
+    {{ form_start(form, {'attr': {'class': 'mt-10'}}) }}
+        <div class="bg-gray-300 p-6 border rounded-xl [&>div:not(:last-child)]:grid [&>div]:grid-cols-1 sm:[&>div]:grid-cols-2 [&>div]:gap-2 sm:[&>div]:gap-4 [&>div]:mb-3">
             {{ form_errors(form) }}
-            {{ form_row(form.crypto) }}
-            {{ form_row(form.quantity) }}
-            {{ form_row(form.price) }}
-            {{ form_row(form.purchaseDate) }}
-            {{ form_row(form.submit) }}
+            <h1 class="text-2xl text-blue-500 text-center font-bold mb-10 mt-2">Add Crypto</h1>
+                <div>
+                    <div>
+                        {{ form_label(form.crypto) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.crypto) }}
+                        {{ form_errors(form.crypto) }}
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        {{ form_label(form.quantity) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.quantity) }}
+                        {{ form_errors(form.quantity) }}
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        {{ form_label(form.price) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.price) }}
+                        {{ form_errors(form.price) }}
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        {{ form_label(form.purchaseDate) }}
+                    </div>
+                    <div>
+                        {{ form_widget(form.purchaseDate) }}
+                        {{ form_errors(form.purchaseDate) }}
+                    </div>
+                </div>
+
+            <div class="justify-center flex mt-6 p-2">
+                {{ form_row(form.submit) }}
+            </div>
         </div>
     {{ form_end(form) }}
 {% endblock %}
