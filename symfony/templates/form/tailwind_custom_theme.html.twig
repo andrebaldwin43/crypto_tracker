@@ -1,0 +1,32 @@
+{% use 'tailwind_2_layout.html.twig' %}
+
+{%- block form_row -%}
+    {%- set row_attr = row_attr|merge({
+        class: (row_attr.class|default('') ~ ' mb-5')|trim
+    }) -%}
+    {{- parent() -}}
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {%- set label_attr = label_attr|merge({
+        class: (label_attr.class|default('') ~ ' text-lg font-bold sm:text-left')|trim
+    }) -%}
+    {{- parent() -}}
+{%- endblock form_label -%}
+
+{%- block widget_attributes -%}
+    {%- set attr = attr|merge({
+        class: (attr.class|default('') ~ ' w-full bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-1.5')|trim
+    }) -%}
+    {{- parent() -}}
+{%- endblock widget_attributes -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <ul class="mt-1 text-sm text-red-600">
+            {%- for error in errors -%}
+                <li>{{ error.message }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}

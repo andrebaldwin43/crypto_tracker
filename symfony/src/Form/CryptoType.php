@@ -38,22 +38,39 @@ class CryptoType extends AbstractType
                 'label' => 'Cryptocurrency',
                 'choices' => $choices,
                 'mapped' => false,
-                'placeholder' => 'Choose a cryptocurrency',
+                'placeholder' => '-- Select --',
                 'constraints' => [new NotBlank()],
             ])
             ->add('quantity', NumberType::class, [
                 'label' => 'Quantity',
                 'constraints' => [new NotBlank()],
+                'attr' => [
+                    'step' => '0.01',
+                    'min' => '0',
+                    'placeholder' => '0.00',
+                ],
             ])
             ->add('price', NumberType::class, [
                 'label' => 'Cost',
                 'constraints' => [new NotBlank()],
+                'attr' => [
+                    'step' => '0.01',
+                    'min' => '0',
+                    'placeholder' => '0.00',
+                ],
             ])
             ->add('purchaseDate', DateType::class, [
                 'label' => 'Date Purchased',
+                'label_attr' => [
+                    'class' => 'text-lg font-bold',
+                ],
                 'constraints' => [new NotBlank()],
             ])
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'px-3 py-1 bg-blue-400 hover:bg-blue-500 rounded',
+                ],
+            ]);
 
             $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
                 $crypto = $event->getData();
