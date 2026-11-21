@@ -16,7 +16,7 @@
 
 {%- block widget_attributes -%}
     {%- set attr = attr|merge({
-        class: (attr.class|default('') ~ ' w-full bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm py-1.5')|trim
+        class: (attr.class|default('') ~ ' w-full bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-center sm:text-sm py-1.5')|trim
     }) -%}
     {{- parent() -}}
 {%- endblock widget_attributes -%}
