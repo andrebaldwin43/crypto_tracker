@@ -63,6 +63,54 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/account', name: 'app_account')]
+    #[IsGranted('ROLE_USER')]
+    public function account(Request $request, UserPasswordHasherInterface $passwordHasher, DocumentManager $documentManager)
+    {
+        $user = $this->getUser();
+        if (!$user instanceof UserInterface) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $changePasswordForm = $this->createForm(UserType::class, $user);
+        $changePasswordForm->handleRequest($request);
+
+        return $this->render('account/account.html.twig', [
+            'user' => $user,
+            'changePasswordForm' => $changePasswordForm,
+        ]);
+    }
+
+    #[Route(path: '/account/change-password', name: 'app_change_password')]
+    #[IsGranted('ROLE_USER')]
+    public function changePassword(Request $request, UserPasswordHasherInterface $passwordHasher, DocumentManager $documentManager)
+    {
+        $user = $this->getUser();
+        if (!$user instanceof UserInterface) {
+            throw $this->createAccessDeniedException();
+        }
+        
+        $changePasswordForm = $this->createForm(UserType::class, $user);
+        $changePasswordForm->handleRequest($request);
+
+        if ($changePasswordForm->isSubmitted() && $changePasswordForm->isValid()) {
+            $plainPassword = $changePasswordForm->get('password')->getData();
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+            $user->setPassword($hashedPassword);
+
+            $documentManager->persist($user);
+            $documentManager->flush();
+            
+            $this->addFlash('success', 'Password changed successfully.');
+
+            return $this->redirectToRoute('app_dashboard');
+        }
+
+        return $this->render('account/change_password.html.twig', [
+            'changePasswordForm' => $changePasswordForm,
+        ]);
+    }
+
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
