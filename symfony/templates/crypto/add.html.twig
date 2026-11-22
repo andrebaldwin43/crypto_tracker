@@ -2,8 +2,9 @@
 {% form_theme form 'form/tailwind_custom_theme.html.twig' %}
 
 {% block body %}
+<div class="lg:max-w-md w-full"> 
     {{ form_start(form, {'attr': {'class': 'mt-10'}}) }}
-        <div class="bg-gray-300 p-6 border rounded-xl [&>div:not(:last-child)]:grid [&>div]:grid-cols-1 sm:[&>div]:grid-cols-2 [&>div]:gap-2 sm:[&>div]:gap-4 [&>div]:mb-3">
+        <div class="bg-gray-300 w p-6 border rounded-xl [&>div:not(:last-child)]:grid [&>div]:grid-cols-1 sm:[&>div]:grid-cols-2 [&>div]:gap-2 sm:[&>div]:gap-4 [&>div]:mb-3">
             {{ form_errors(form) }}
             <h1 class="text-2xl text-blue-500 text-center font-bold mb-10 mt-2">Add Crypto</h1>
                 <div>
@@ -51,4 +52,5 @@
             </div>
         </div>
     {{ form_end(form) }}
+</div>
 {% endblock %}

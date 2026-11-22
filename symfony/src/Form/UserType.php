@@ -19,8 +19,7 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 "attr" => [
-                    'placeholder' => 'Enter your email',
-                    'class' => 'bg-amber-50 border border-gray-300 p-2 rounded mb-5',
+                    'placeholder' => 'Enter your email'
                 ],
             ])
             ->add('password', RepeatedType::class, [
@@ -33,7 +32,10 @@ class UserType extends AbstractType
                 'mapped' => false,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Sign In'
+                'label' => 'Sign In',
+                "attr" => [
+                    'class' => 'bg-blue-500 text-white px-4 py-2 rounded-lg mt-4'
+                ]
             ]);
     }
 
