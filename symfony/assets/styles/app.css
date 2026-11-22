@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @source not "../../public";
 
+#holdings-table [data-crypto-row]:has([data-crypto-select][aria-pressed="true"]) {
+    background-color: #dbeafe;
+}
+
 /* body {
     background-color: lightgray;
 } */
