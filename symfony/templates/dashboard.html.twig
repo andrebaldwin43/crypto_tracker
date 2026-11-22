@@ -12,9 +12,9 @@
     {% endif %}
 
     <div class="w-full grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="flex flex-col bg-gray-200 rounded-xl shadow-md border border-blue-400">
+        <div class="min-w-0 flex flex-col bg-gray-200 rounded-xl shadow-md border border-blue-400">
             <h2 class="text-xl font-bold p-2 text-center">Holdings</h2>
-            <div class="p-4">
+            <div class="min-w-0 px-3 pb-4 sm:px-4">
                 {% if cryptoData is empty %}
                     <p class="text-gray-600 text-center">
                         {% if error %}
@@ -29,14 +29,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col bg-gray-200 rounded-xl shadow-md border border-blue-400" data-chart-container>
-            <div class="flex justify-between items-center p-2">
-                <h2 class="text-xl font-bold text-center flex-1">Chart</h2>
-                <button onclick="resetChart()" class="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors">
-                    Reset
-                </button>
-            </div>
-        </div>
+        {% include '_partials/_marketData.html.twig' with {'cryptoData': cryptoData} %}
     </div>
 
     {% include '_partials/_chartCard.html.twig' %}
