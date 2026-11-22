@@ -1,5 +1,6 @@
 import './stimulus_bootstrap.js';
 import './js/chart.js';
+import './js/market-data.js';
 
 /*
  * Welcome to your app's main JavaScript file!
