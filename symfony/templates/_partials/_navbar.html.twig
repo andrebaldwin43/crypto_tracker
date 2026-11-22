@@ -2,6 +2,13 @@
     <nav class="bg-gray-200 p-5 text-left text-black [&_a]:px-1 [&_a]:hover:text-blue-500 flex justify-between items-center">
         <div class="text-blue-500 font-bold text-2xl">Crypto Tracker</div>
         <div>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="text-green-500 text-1xl flash-{{ label }}">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div>
             {% if app.current_route != 'app_dashboard' %}
                 <a href="{{ path('app_dashboard') }}" class="{{ app.current_route == 'app_dashboard' ? 'active' : '' }}">
                     Home
@@ -12,7 +19,7 @@
                 Add Crypto
             </a>
 
-            <a href="{{ path('app_dashboard') }}" class="{{ app.current_route == 'app_dashboard' ? 'active' : '' }}">
+            <a href="{{ path('app_account') }}" class="{{ app.current_route == 'app_account' ? 'active' : '' }}">
                 Account
             </a>
 
