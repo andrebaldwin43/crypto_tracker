@@ -24,22 +24,14 @@
                         {% endif %}
                     </p>
                 {% else %}
-                    {% include '_partials/_cryptoHoldings.html.twig' with {'cryptoData': cryptoData} %}
+                    {% include '_partials/_cryptoHoldingsCard.html.twig' with {'cryptoData': cryptoData} %}
                 {% endif %}
             </div>
         </div>
 
-        {% include '_partials/_marketData.html.twig' with {'cryptoData': cryptoData} %}
+        {% include '_partials/_marketDataCard.html.twig' with {'cryptoData': cryptoData} %}
     </div>
 
     {% include '_partials/_chartCard.html.twig' %}
 
-    {% block chartdata %}
-        <script>
-            window.chartData = {
-                labels: {{ chart_labels|json_encode|raw }},
-                values: {{ chart_values|json_encode|raw }}
-            };
-        </script>
-    {% endblock %}
 {% endblock %}

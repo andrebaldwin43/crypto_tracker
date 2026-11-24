@@ -10,4 +10,7 @@ document.addEventListener('click', (event) => {
     document.querySelectorAll('[data-crypto-select]').forEach((button) => {
         button.setAttribute('aria-pressed', String(button.dataset.cryptoSelect === selected));
     });
+    document.dispatchEvent(new CustomEvent('holding:selected', {
+        detail: { id: row.dataset.coinId, name: row.dataset.coinName, symbol: row.dataset.coinSymbol },
+    }));
 });
